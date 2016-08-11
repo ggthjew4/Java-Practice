@@ -13,7 +13,7 @@ class LoggingException1 extends Exception {
 	
 
 }
-
+ 
 public class E06_LoggingExceptions {
 	public static void main(String[] args) {
 	}

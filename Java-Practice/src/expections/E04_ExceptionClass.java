@@ -9,7 +9,7 @@ package expections;
  * your new exception.
  ***********************************************/
 
-
+ 
 class MyException  {
 	String msg;
 
