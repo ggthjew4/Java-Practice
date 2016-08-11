@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class SlowMap<K, V> extends AbstractMap<K, V> {
+public class E04_SlowMap<K, V> extends AbstractMap<K, V> {
 	private List<K> keys = new ArrayList<K>();
 	private List<V> values = new ArrayList<V>();
 
@@ -27,7 +27,7 @@ public class SlowMap<K, V> extends AbstractMap<K, V> {
 	}
 
 	public static void main(String[] args) {
-		SlowMap<String, String> m = new SlowMap<String, String>();
+		E04_SlowMap<String, String> m = new E04_SlowMap<String, String>();
 		m.putAll(Countries.capitals(15));
 		System.out.println(m);
 		System.out.println(m.get("BULGARIA"));

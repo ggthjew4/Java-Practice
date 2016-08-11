@@ -26,7 +26,7 @@ class SlowSet<K> extends AbstractSet<K> {
 	}
 }
 
-public class E18_SlowSet {
+public class E05_SlowSet {
 	public static void main(String[] args) {
 		SlowSet<String> slowSet = new SlowSet<String>();
 		slowSet.addAll(Countries.names(10));

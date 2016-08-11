@@ -18,7 +18,7 @@ class Item implements Comparable<Item> {
   }
 }
 
-public class E11_PriorityQueue {
+public class E03_PriorityQueue {
   public static void main(String[] args) {
   }
 } 

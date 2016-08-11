@@ -87,7 +87,7 @@ class SList<T> {
 	}
 }
 
-public class E08_SList {
+public class E02_SList {
 	public static void main(String[] args) {
 		
 	}
