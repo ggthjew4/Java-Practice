@@ -7,6 +7,11 @@ package expections;
 
 public class E03_ArrayIndexBounds {
   public static void main(String args[]) {
-	  //TODO
+	  int[] array = new int[]{1,2,3};
+	  try{
+		  System.out.println(array[3]);		  
+	  }catch(ArrayIndexOutOfBoundsException e){
+		  e.printStackTrace();
+	  }
   } 
 } 

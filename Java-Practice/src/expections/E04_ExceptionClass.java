@@ -10,14 +10,21 @@ package expections;
  ***********************************************/
 
  
-class MyException  {
-	String msg;
-
+class MyException extends Exception{
+	
+	public MyException(String msg) {
+		super(msg);
+	}
+	
 }
 
 
 public class E04_ExceptionClass {
 	public static void main(String args[]) {
-		
+		try{
+			throw new MyException("a new message");
+		}catch(MyException e){
+			e.printStackTrace();
+		}
 	}
 }

@@ -9,6 +9,11 @@ package expections;
 
 public class E02_NullReference {
   public static void main(String args[]) {
-	   
+	   String word = null;
+	   try{
+		   System.out.println(word.equals(""));
+	   }catch(NullPointerException e){
+		   e.printStackTrace();
+	   }
   }
 } 
