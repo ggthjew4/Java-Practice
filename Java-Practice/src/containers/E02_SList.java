@@ -17,8 +17,6 @@
  ***********************************************/
 package containers;
 
-import java.util.ArrayList;
-
 interface SListIterator<T> {
 	boolean hasNext();
 
@@ -31,10 +29,12 @@ interface SListIterator<T> {
 
 class SList<T> {
 	// Utilization of the 'Null Object' pattern
+
 	SList() {
 	}
 	
-	private final Link<T> header = new Link<T>(null, null);
+	
+	private Link<T> header = new Link<T>(null, null);
 	private static class Link<T> {
 		T element;
 		Link<T> next;
@@ -44,14 +44,13 @@ class SList<T> {
 			this.next = next;
 		}
 	}
-
-
+	
+	
 	public SListIterator<T> iterator() {
 		return new SListIteratorImpl();
 	}
 	private class SListIteratorImpl implements SListIterator<T> {
 		private Link<T> lastReturned = header;
-		private Link<T> previous = header;
 		private Link<T> next = header;
 
 		SListIteratorImpl() {
@@ -61,8 +60,9 @@ class SList<T> {
 			if(lastReturned.next != null){
 				return true;
 			}else{
-				return false;
+				return false;				
 			}
+			
 		}
 
 		public T next() {
@@ -71,26 +71,29 @@ class SList<T> {
 				lastReturned = lastReturned.next;
 				return element;
 			}else{
-				return null;
+				throw new IllegalStateException();
 			}
 		}
 
 		public void remove() {
-			if(next.element != null){
-				previous.next = next.next;
-				next = previous;
+			if(header.next != null){
+				header = header.next;
+				lastReturned = header;
 			}else{
-				throw new IllegalStateException("No element inside.");
+				throw new IllegalStateException();
 			}
 		}
 
 		public void add(T element) {
-			Link<T> addedElement = new Link<T>(element, null);
-			next.next = addedElement;
-			previous = next;
-			next = addedElement;
+			if(next.next != null){
+				next.next.next = new Link<T>(element, null);
+				next = next.next;				
+			}else{
+				header.next = new Link<T>(element, null);
+			}
 		}
 	}
+	
 	
 	public String toString() {
 		StringBuilder buf = new StringBuilder();
@@ -108,23 +111,32 @@ class SList<T> {
 }
 
 public class E02_SList {
-	public static void main(String[] args) {
-		
-		ArrayList<String> arrayList = new ArrayList<>();
-		arrayList.add("one");
-		arrayList.add("two");
-		System.out.println(arrayList.toString());
-		arrayList.add("three");
-		System.out.println(arrayList.toString());
-		
+	public static void main(String[] args) {	
 		SList<String> sList = new SList<>();
 		SListIterator<String> iterator = sList.iterator();
+		
 		iterator.add("one");
 		iterator.add("two");
-		System.out.println(sList.toString());
 		iterator.add("three");
 		System.out.println(sList.toString());
 		
+		iterator.remove();
+		System.out.println(sList.toString());
+		
+		iterator.remove();
+		System.out.println(sList.toString());
+		
+		iterator.add("four");
+		iterator.add("five");
+		System.out.println(sList.toString());
+		
+		while(iterator.hasNext()){
+			System.out.println(iterator.next());
+		}
+		
+		iterator.remove();
+		iterator.remove();
+		System.out.println(sList.toString());
 	}
 } /*
  * Output: Demonstrating SListIterator... [] false [One, Two, Three] One Two

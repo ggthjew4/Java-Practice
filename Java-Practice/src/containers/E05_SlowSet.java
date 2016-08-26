@@ -14,15 +14,39 @@ class SlowSet<K> extends AbstractSet<K> {
 	private List<K> keys = new ArrayList<K>();
 
 	public boolean add(K key) {
-		return false;
+		if(!keys.contains(key)){
+			keys.add(key);
+			return true;
+		}else{
+			return false;			
+		}
 	}
 
 	public Iterator<K> iterator() {
-		return null;
+//		if(this.isEmpty()){
+//			return Collections.<K>emptyList().iterator();
+//		}
+//		
+//		return new Iterator<K>(){
+//			private Node currentNode = null;
+//			
+//			@Override
+//			public boolean hasNext() {
+//
+//				return false;
+//			}
+//
+//			@Override
+//			public K next() {
+//				
+//				return null;
+//			}	
+//		};
+		return keys.iterator();
 	}
 
 	public int size() {
-		return 0;
+		return keys.size();
 	}
 }
 
